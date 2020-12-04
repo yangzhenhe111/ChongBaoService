@@ -23,9 +23,9 @@ public class GetAllSortServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
-        DBUtil dbUtillrz = new DBUtil();
         String sortname = request.getParameter("sortname");
         System.out.println(sortname);
+        DBUtil dbUtillrz = new DBUtil();
         try {
             ResultSet resultSet = dbUtillrz.queryDate("select post_id,post_title,post_text,post_time,topic.name,user_name,number_likes,number_comments,number_reprints from post,user,topic where user.user_id = post.user_id and topic.name = post.name and topic.name= '"+sortname+"'");
             JSONArray jsonArray = new JSONArray();
