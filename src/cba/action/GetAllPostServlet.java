@@ -26,7 +26,7 @@ public class GetAllPostServlet extends HttpServlet {
         resp.setContentType("text/html;charset=utf-8");
         DBUtil dbUtillrz = new DBUtil();
         try {
-            ResultSet resultSet = dbUtillrz.queryDate("select post_id,post_title,post_text,post_time,name,user_name,number_likes,number_comments,number_reprints,post.picture_path from post,user where user.user_id = post.user_id");
+            ResultSet resultSet = dbUtillrz.queryDate("select user.user_picture_path,post_id,post_title,post_text,post_time,name,user_name,number_likes,number_comments,number_reprints,post.picture_path from post,user where user.user_id = post.user_id");
             JSONArray jsonArray = new JSONArray();
             while (resultSet.next()){
                 JSONObject jsonObject = new JSONObject();
@@ -40,6 +40,7 @@ public class GetAllPostServlet extends HttpServlet {
                 jsonObject.put("post_topic",resultSet.getString("name"));
                 jsonObject.put("user_name",resultSet.getString("user_name"));
                 jsonObject.put("picture_path",resultSet.getString("picture_path"));
+                jsonObject.put("user_picture_path",resultSet.getString("user_picture_path"));
                 jsonArray.add(jsonObject);
             }
             resp.getWriter().write(jsonArray.toString());

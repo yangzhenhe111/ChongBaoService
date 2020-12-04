@@ -13,23 +13,24 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet("/GetIdPostServlet")
-public class GetIdPostServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+@WebServlet("/GetPostByTime")
+public class GetPostByTime extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=utf-8");
-
-        DBUtil dbUtillrz = new DBUtil();
-        String id = request.getParameter("post_id");
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
+        resp.setContentType("text/html;charset=utf-8");
+        DBUtil dbUtil = new DBUtil();
         try {
-            ResultSet resultSet = dbUtillrz.queryDate("select user.user_picture_path,post_title,post_text,post_time,number_likes,number_comments,number_reprints,user_name,name,post.picture_path from post,user where post_id='"+id+"' and post.user_id = user.user_id");
+            ResultSet resultSet = dbUtil.queryDate("select user.user_picture_path,post_id,post_title,post_text,post_time,name,user_name,number_likes,number_comments,number_reprints,post.picture_path from post,user where post.user_id = user.user_id ORDER BY post_time ASC");
             JSONArray jsonArray = new JSONArray();
             while (resultSet.next()){
                 JSONObject jsonObject = new JSONObject();
+                jsonObject.put("post_id",resultSet.getString("post_id"));
                 jsonObject.put("likes",resultSet.getString("number_likes"));
                 jsonObject.put("comments",resultSet.getString("number_comments"));
                 jsonObject.put("forwards",resultSet.getString("number_reprints"));
@@ -38,11 +39,11 @@ public class GetIdPostServlet extends HttpServlet {
                 jsonObject.put("post_time",resultSet.getString("post_time"));
                 jsonObject.put("post_topic",resultSet.getString("name"));
                 jsonObject.put("user_name",resultSet.getString("user_name"));
-                jsonObject.put("img_path",resultSet.getString("picture_path"));
+                jsonObject.put("picture_path",resultSet.getString("picture_path"));
                 jsonObject.put("user_picture_path",resultSet.getString("user_picture_path"));
                 jsonArray.add(jsonObject);
             }
-            response.getWriter().write(jsonArray.toString());
+            resp.getWriter().write(jsonArray.toString());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
