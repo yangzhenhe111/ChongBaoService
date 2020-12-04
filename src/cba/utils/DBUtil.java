@@ -40,8 +40,14 @@ public class DBUtil {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
 
-
-
+    public ResultSet queryDate(String sql) throws ClassNotFoundException, SQLException {
+        // 连接到数据库
+        getConnection();
+        Statement stmt = getConnection().createStatement();
+        // 执行查询
+        ResultSet rs = stmt.executeQuery(sql);
+        return rs;
     }
 }
