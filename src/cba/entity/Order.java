@@ -8,9 +8,10 @@ public class Order implements Serializable {
     private String orderStart;//订单起始地址
     private String orderEnd;//订单终点地址
     private String addresser;//饲主
-    private String contact;//联系方式
-    private String addressee;//医院联系人
-    private String contact1;//联系方式
+    private String contact;//饲主联系方式
+    private String addressee;//收件人
+    private String contact1;//收件人联系方式
+    private String contact2;//医院联系方式
     private Pet petInfo;//宠物信息
     private String runnerName;//跑者姓名
     private String runnerPhone;//跑者电话
