@@ -39,6 +39,7 @@ public class RegisterServlet extends HttpServlet {
         System.out.println(userPhone);
         System.out.println(password);
 
+
         UserService userService = UserService.getInstance();
         boolean b = userService.isExist(userPhone);
         System.out.println(b);
