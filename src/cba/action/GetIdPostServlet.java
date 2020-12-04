@@ -37,6 +37,7 @@ public class GetIdPostServlet extends HttpServlet {
                 jsonObject.put("post_time",resultSet.getString("post_time"));
                 jsonObject.put("post_topic",resultSet.getString("name"));
                 jsonObject.put("user_name",resultSet.getString("user_name"));
+                jsonObject.put("user_name",resultSet.getString("picture_path"));
                 jsonArray.add(jsonObject);
             }
             response.getWriter().write(jsonArray.toString());
