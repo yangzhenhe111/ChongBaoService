@@ -50,4 +50,11 @@ public class DBUtil {
         ResultSet rs = stmt.executeQuery(sql);
         return rs;
     }
+
+    public int addDataToTable(String sql) throws ClassNotFoundException, SQLException {
+        // 连接到数据库
+        getConnection();
+        Statement stmt = getConnection().createStatement();
+        return stmt.executeUpdate(sql);
+    }
 }

@@ -13,8 +13,8 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet("/GetAllPostServlet")
-public class GetAllPostServlet extends HttpServlet {
+@WebServlet("/GetAllComment")
+public class GetAllComment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -25,21 +25,18 @@ public class GetAllPostServlet extends HttpServlet {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
         DBUtil dbUtillrz = new DBUtil();
+        int postid = Integer.parseInt(req.getParameter("post_id"));
+        System.out.println(postid);
         try {
-            ResultSet resultSet = dbUtillrz.queryDate("select user.user_picture_path,post_id,post_title,post_text,post_time,name,user_name,number_likes,number_comments,number_reprints,post.picture_path from post,user where user.user_id = post.user_id");
+            ResultSet resultSet = dbUtillrz.queryDate("select user.user_name,comment_id,comment_time,comments,user.user_id,user.user_picture_path from comment,user where comment.user_id=user.user_id and post_id ='"+postid+"'");
             JSONArray jsonArray = new JSONArray();
             while (resultSet.next()){
                 JSONObject jsonObject = new JSONObject();
-                jsonObject.put("post_id",resultSet.getString("post_id"));
-                jsonObject.put("likes",resultSet.getString("number_likes"));
-                jsonObject.put("comments",resultSet.getString("number_comments"));
-                jsonObject.put("forwards",resultSet.getString("number_reprints"));
-                jsonObject.put("post_title",resultSet.getString("post_title"));
-                jsonObject.put("post_text",resultSet.getString("post_text"));
-                jsonObject.put("post_time",resultSet.getString("post_time"));
-                jsonObject.put("post_topic",resultSet.getString("name"));
+                jsonObject.put("comment_id",resultSet.getString("comment_id"));
+                jsonObject.put("comment_time",resultSet.getString("comment_time"));
+                jsonObject.put("comments",resultSet.getString("comments"));
+                jsonObject.put("user_id",resultSet.getString("user_id"));
                 jsonObject.put("user_name",resultSet.getString("user_name"));
-                jsonObject.put("picture_path",resultSet.getString("picture_path"));
                 jsonObject.put("user_picture_path",resultSet.getString("user_picture_path"));
                 jsonArray.add(jsonObject);
             }
