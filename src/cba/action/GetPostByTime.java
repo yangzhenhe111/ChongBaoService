@@ -25,25 +25,73 @@ public class GetPostByTime extends HttpServlet {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
         DBUtil dbUtil = new DBUtil();
+        int i = Integer.parseInt(req.getParameter("i"));
+        System.out.println(i);
         try {
-            ResultSet resultSet = dbUtil.queryDate("select user.user_picture_path,post_id,post_title,post_text,post_time,name,user_name,number_likes,number_comments,number_reprints,post.picture_path from post,user where post.user_id = user.user_id ORDER BY post_time ASC");
-            JSONArray jsonArray = new JSONArray();
-            while (resultSet.next()){
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("post_id",resultSet.getString("post_id"));
-                jsonObject.put("likes",resultSet.getString("number_likes"));
-                jsonObject.put("comments",resultSet.getString("number_comments"));
-                jsonObject.put("forwards",resultSet.getString("number_reprints"));
-                jsonObject.put("post_title",resultSet.getString("post_title"));
-                jsonObject.put("post_text",resultSet.getString("post_text"));
-                jsonObject.put("post_time",resultSet.getString("post_time"));
-                jsonObject.put("post_topic",resultSet.getString("name"));
-                jsonObject.put("user_name",resultSet.getString("user_name"));
-                jsonObject.put("picture_path",resultSet.getString("picture_path"));
-                jsonObject.put("user_picture_path",resultSet.getString("user_picture_path"));
-                jsonArray.add(jsonObject);
+            ResultSet resultSet;
+            if (i==1){
+                String sql = "select user.user_picture_path,post_id,post_title,post_text,post_time,name,user_name,number_likes,number_comments,number_reprints,post.picture_path from post,user where post.user_id = user.user_id ORDER BY post_time DESC";
+                resultSet = dbUtil.queryDate(sql);
+                JSONArray jsonArray = new JSONArray();
+                while (resultSet.next()){
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("post_id",resultSet.getString("post_id"));
+                    jsonObject.put("likes",resultSet.getString("number_likes"));
+                    jsonObject.put("comments",resultSet.getString("number_comments"));
+                    jsonObject.put("forwards",resultSet.getString("number_reprints"));
+                    jsonObject.put("post_title",resultSet.getString("post_title"));
+                    jsonObject.put("post_text",resultSet.getString("post_text"));
+                    jsonObject.put("post_time",resultSet.getString("post_time"));
+                    jsonObject.put("post_topic",resultSet.getString("name"));
+                    jsonObject.put("user_name",resultSet.getString("user_name"));
+                    jsonObject.put("picture_path",resultSet.getString("picture_path"));
+                    jsonObject.put("user_picture_path",resultSet.getString("user_picture_path"));
+                    jsonArray.add(jsonObject);
+                }
+                resp.getWriter().write(jsonArray.toString());
             }
-            resp.getWriter().write(jsonArray.toString());
+            if (i==3){
+                String sql = "select user.user_picture_path,post_id,post_title,post_text,post_time,name,user_name,number_likes,number_comments,number_reprints,post.picture_path from post,user where post.user_id = user.user_id ORDER BY number_likes DESC";
+                resultSet = dbUtil.queryDate(sql);
+                JSONArray jsonArray = new JSONArray();
+                while (resultSet.next()){
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("post_id",resultSet.getString("post_id"));
+                    jsonObject.put("likes",resultSet.getString("number_likes"));
+                    jsonObject.put("comments",resultSet.getString("number_comments"));
+                    jsonObject.put("forwards",resultSet.getString("number_reprints"));
+                    jsonObject.put("post_title",resultSet.getString("post_title"));
+                    jsonObject.put("post_text",resultSet.getString("post_text"));
+                    jsonObject.put("post_time",resultSet.getString("post_time"));
+                    jsonObject.put("post_topic",resultSet.getString("name"));
+                    jsonObject.put("user_name",resultSet.getString("user_name"));
+                    jsonObject.put("picture_path",resultSet.getString("picture_path"));
+                    jsonObject.put("user_picture_path",resultSet.getString("user_picture_path"));
+                    jsonArray.add(jsonObject);
+                }
+                resp.getWriter().write(jsonArray.toString());
+            }
+            if (i==2){
+                String sql = "select user.user_picture_path,post_id,post_title,post_text,post_time,name,user_name,number_likes,number_comments,number_reprints,post.picture_path from post,user where post.user_id = user.user_id ORDER BY number_comments DESC";
+                resultSet = dbUtil.queryDate(sql);
+                JSONArray jsonArray = new JSONArray();
+                while (resultSet.next()){
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("post_id",resultSet.getString("post_id"));
+                    jsonObject.put("likes",resultSet.getString("number_likes"));
+                    jsonObject.put("comments",resultSet.getString("number_comments"));
+                    jsonObject.put("forwards",resultSet.getString("number_reprints"));
+                    jsonObject.put("post_title",resultSet.getString("post_title"));
+                    jsonObject.put("post_text",resultSet.getString("post_text"));
+                    jsonObject.put("post_time",resultSet.getString("post_time"));
+                    jsonObject.put("post_topic",resultSet.getString("name"));
+                    jsonObject.put("user_name",resultSet.getString("user_name"));
+                    jsonObject.put("picture_path",resultSet.getString("picture_path"));
+                    jsonObject.put("user_picture_path",resultSet.getString("user_picture_path"));
+                    jsonArray.add(jsonObject);
+                }
+                resp.getWriter().write(jsonArray.toString());
+            }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
