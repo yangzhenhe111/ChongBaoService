@@ -57,4 +57,11 @@ public class DBUtil {
         Statement stmt = getConnection().createStatement();
         return stmt.executeUpdate(sql);
     }
+
+    public int updateData(String sql) throws ClassNotFoundException, SQLException {
+        // 连接到数据库
+        getConnection();
+        Statement stmt = getConnection().createStatement();
+        return stmt.executeUpdate(sql);
+    }
 }
