@@ -1,7 +1,6 @@
 package cba.action;
 
 import cba.utils.DBUtil;
-import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/PostComment")
-public class PostComment extends HttpServlet {
+@WebServlet("/PublishPost")
+public class PublishPost extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -22,20 +21,22 @@ public class PostComment extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
+        DBUtil dbUtillrz = new DBUtil();
+        int postid = Integer.parseInt(req.getParameter("postid"));
+        int userid = Integer.parseInt(req.getParameter("userid"));
+        String title = req.getParameter("title");
+        String conetent = req.getParameter("content");
+        String time = req.getParameter("time");
+        String imgpath = req.getParameter("imgpath");
         DBUtil dbUtil = new DBUtil();
-        int post_id = Integer.parseInt(req.getParameter("post_id"));
-        String comment = req.getParameter("comment");
-        int user_id = Integer.parseInt(req.getParameter("user_id"));
-        String comment_time = req.getParameter("comment_time");
-        System.out.println("post_id:"+post_id+"评论内容:"+comment+"user_id:"+user_id+"评论时间:"+comment_time);
         try {
-            int n = dbUtil.addDataToTable("insert into comment (comment_time,comments,user_id,post_id) values ('"+comment_time+"','"+comment+"','"+user_id+"','"+post_id+"')");
+            int n = dbUtil.addDataToTable("insert into post (post_id,user_id,post_title,post_text,post_time) values ('"+postid+"','"+userid+"','"+title+"','"+conetent+"','"+time+"')");
             if (n==1){
                 resp.getWriter().write("true");
-                System.out.println("成功插入");
+                System.out.println("成功");
             }else {
                 resp.getWriter().write("false");
-                System.out.println("插入失败");
+                System.out.println("失败");
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

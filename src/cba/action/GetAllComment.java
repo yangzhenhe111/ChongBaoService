@@ -28,7 +28,7 @@ public class GetAllComment extends HttpServlet {
         int postid = Integer.parseInt(req.getParameter("post_id"));
         System.out.println(postid);
         try {
-            ResultSet resultSet = dbUtillrz.queryDate("select user.user_name,comment_id,comment_time,comments,user.user_id,user.user_picture_path from comment,user where comment.user_id=user.user_id and post_id ='"+postid+"'");
+            ResultSet resultSet = dbUtillrz.queryDate("select user.user_name,comment_id,comment_time,comments,user.user_id,user.user_picture_path from comment,user where comment.user_id=user.user_id and post_id ='"+postid+"' ORDER BY comment_time DESC");
             JSONArray jsonArray = new JSONArray();
             while (resultSet.next()){
                 JSONObject jsonObject = new JSONObject();
