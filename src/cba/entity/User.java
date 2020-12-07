@@ -1,115 +1,127 @@
 package cba.entity;
 
+
 public class User {
-    private int userId;//ç”¨æˆ·ID
-    private String userName;//ç”¨æˆ·å§“å
-    private String accountNumber;//è´¦å·
-    private double accountAmount;//è´¦æˆ·é‡‘é¢
-    private String picturePath;//å›¾ç‰‡è·¯å¾„
-    private String userPassword;//ç”¨æˆ·å¯†ç 
-    private String userPhone;//ç”¨æˆ·æ‰‹æœºå·
-    private String userEmail;//ç”¨æˆ·é‚®ç®±
-    private String userAutograph;//ä¸ªæ€§ç­¾å
+	private int userId;//ÓÃ»§ID
+	private String userName;//ÓÃ»§ĞÕÃû
+	private String userSex;//ÓÃ»§ĞÔ±ğ
+	private String accountNumber;//ÕËºÅ
+	private double accountAmount;//ÕË»§½ğ¶î
+	private String picturePath;//Í¼Æ¬Â·¾¶
+	private String userPassword;//ÓÃ»§ÃÜÂë
+	private String userPhone;//ÓÃ»§ÊÖ»úºÅ
+	private String userBrithday;//ÓÃ»§ÓÊÏä
+	private String userAutograph;//¸öĞÔÇ©Ãû
 
-    public User() {
-    }
+	public User() {
+	}
 
-    public User(int userId, String userName, String accountNumber, double accountAmount, String picturePath, String userPassword, String userPhone, String userEmail, String userAutograph) {
-        this.userId = userId;
-        this.userName = userName;
-        this.accountNumber = accountNumber;
-        this.accountAmount = accountAmount;
-        this.picturePath = picturePath;
-        this.userPassword = userPassword;
-        this.userPhone = userPhone;
-        this.userEmail = userEmail;
-        this.userAutograph = userAutograph;
-    }
+	public User(int userId, String userName, String userSex, String accountNumber, double accountAmount, String picturePath, String userPassword, String userPhone, String userBrithday, String userAutograph) {
+		this.userId = userId;
+		this.userName = userName;
+		this.userSex = userSex;
+		this.accountNumber = accountNumber;
+		this.accountAmount = accountAmount;
+		this.picturePath = picturePath;
+		this.userPassword = userPassword;
+		this.userPhone = userPhone;
+		this.userBrithday = userBrithday;
+		this.userAutograph = userAutograph;
+	}
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", accountNumber='" + accountNumber + '\'' +
-                ", accountAmount=" + accountAmount +
-                ", picturePath='" + picturePath + '\'' +
-                ", userPassword='" + userPassword + '\'' +
-                ", userPhone='" + userPhone + '\'' +
-                ", userEmail='" + userEmail + '\'' +
-                ", userAutograph='" + userAutograph + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "User{" +
+				"userId=" + userId +
+				", userName='" + userName + '\'' +
+				", userSex='" + userSex + '\'' +
+				", accountNumber='" + accountNumber + '\'' +
+				", accountAmount=" + accountAmount +
+				", picturePath='" + picturePath + '\'' +
+				", userPassword='" + userPassword + '\'' +
+				", userPhone='" + userPhone + '\'' +
+				", userBrithday='" + userBrithday + '\'' +
+				", userAutograph='" + userAutograph + '\'' +
+				'}';
+	}
 
-    public double getAccountAmount() {
-        return accountAmount;
-    }
+	public String getUserSex() {
+		return userSex;
+	}
 
-    public void setAccountAmount(double accountAmount) {
-        this.accountAmount = accountAmount;
-    }
+	public void setUserSex(String userSex) {
+		this.userSex = userSex;
+	}
 
-    public int getUserId() {
-        return userId;
-    }
+	public double getAccountAmount() {
+		return accountAmount;
+	}
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+	public void setAccountAmount(double accountAmount) {
+		this.accountAmount = accountAmount;
+	}
 
-    public String getUserName() {
-        return userName;
-    }
+	public int getUserId() {
+		return userId;
+	}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
-    public String getAccountNumber() {
-        return accountNumber;
-    }
+	public String getUserName() {
+		return userName;
+	}
 
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public String getPicturePath() {
-        return picturePath;
-    }
+	public String getAccountNumber() {
+		return accountNumber;
+	}
 
-    public void setPicturePath(String picturePath) {
-        this.picturePath = picturePath;
-    }
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
 
-    public String getUserPassword() {
-        return userPassword;
-    }
+	public String getPicturePath() {
+		return picturePath;
+	}
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
+	public void setPicturePath(String picturePath) {
+		this.picturePath = picturePath;
+	}
 
-    public String getUserPhone() {
-        return userPhone;
-    }
+	public String getUserPassword() {
+		return userPassword;
+	}
 
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
-    }
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
+	}
 
-    public String getUserEmail() {
-        return userEmail;
-    }
+	public String getUserPhone() {
+		return userPhone;
+	}
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
+	}
 
-    public String getUserAutograph() {
-        return userAutograph;
-    }
+	public String getUserBrithday() {
+		return userBrithday;
+	}
 
-    public void setUserAutograph(String userAutograph) {
-        this.userAutograph = userAutograph;
-    }
+	public void setUserBrithday(String userBrithday) {
+		this.userBrithday = userBrithday;
+	}
+
+	public String getUserAutograph() {
+		return userAutograph;
+	}
+
+	public void setUserAutograph(String userAutograph) {
+		this.userAutograph = userAutograph;
+	}
 }
