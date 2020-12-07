@@ -13,5 +13,21 @@
             <servlet-name>MyServlet</servlet-name>
             <url-pattern>/RegisterServlet</url-pattern>
         </servlet-mapping>
+    <servlet>
+        <servlet-name>UpdataUserInfoServlet</servlet-name>
+        <servlet-class>cba.servlet.UpdataUserInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdataUserInfoServlet</servlet-name>
+        <url-pattern>/UpdataUserInfoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UpDataUserInfo2Servlet</servlet-name>
+        <servlet-class>cba.servlet.UpDataUserInfo2Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpDataUserInfo2Servlet</servlet-name>
+        <url-pattern>/UpDataUserInfo2Servlet</url-pattern>
+    </servlet-mapping>
 
 </web-app>
