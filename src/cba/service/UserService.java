@@ -35,4 +35,10 @@ public class UserService {
         boolean b = userDao.Register(phone,pass);
         return b;
     }
+
+    public boolean Updata(User user){
+        UserDao userDao = UserDao.getInstance();
+        boolean b = userDao.upData(user);
+        return b;
+    }
 }

@@ -28,7 +28,6 @@ public class GetPostByTime extends HttpServlet {
         try {
             ResultSet resultSet;
             String sql = "select post_id,post_title,post_time,number_likes,number_comments,picture_path from post ORDER BY post_time DESC";
-            System.out.println("1");
             resultSet = dbUtil.queryDate(sql);
             JSONArray jsonArray = new JSONArray();
             while (resultSet.next()){
