@@ -1,7 +1,6 @@
 package cba.servlet;
 
 import cba.entity.User;
-import cba.service.UserService;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -14,12 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
-@WebServlet(name = "UpdataUserInfoServlet")
-public class UpdataUserInfoServlet extends HttpServlet {
+@WebServlet("/UpDataPetInfoServlet")
+public class UpDataPetInfoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 //
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -97,6 +94,7 @@ public class UpdataUserInfoServlet extends HttpServlet {
         }catch(Exception e){
             e.printStackTrace();
         }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
