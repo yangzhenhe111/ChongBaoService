@@ -35,6 +35,7 @@ public class LoginServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		String num = request.getParameter("num");
 		String pwd = request.getParameter("pwd");
+		System.out.println(num+":"+pwd);
 		OutputStream out=response.getOutputStream();
 		UserServiceImpl impl =UserServiceImpl.getInstance();
 		if(impl.isUser(num, pwd)) {
