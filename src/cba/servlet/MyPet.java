@@ -36,7 +36,7 @@ public class MyPet extends HttpServlet {
 		int userId = Integer.parseInt(request.getParameter("userId"));
 		PetServiceImpl impl = PetServiceImpl.getInstance();
 		String string = impl.getPets(userId);
-		
+		System.out.println(string);
 		OutputStream outputStream = response.getOutputStream();
 		outputStream.write(string.getBytes("utf-8"));
 		System.out.println("MyPet");
