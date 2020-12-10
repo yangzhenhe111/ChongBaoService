@@ -21,9 +21,26 @@ public class PetServiceImpl {
 		return new Gson().toJson(list);
 	}
 
+	/**
+	 * 修改pet信息
+	 * @param pet
+	 * @return
+	 */
 	public boolean UpdataPet(Pet pet){
 		PetDaoImpl petDao = PetDaoImpl.getInstance();
 		boolean b = petDao.updataPet(pet);
+		return b;
+	}
+
+	/**
+	 * 添加pet信息
+	 * @param pet
+	 * @return
+	 */
+	public boolean AddPet(Pet pet){
+
+		PetDaoImpl petDao = PetDaoImpl.getInstance();
+		boolean b = petDao.addPet(pet);
 		return b;
 	}
 }
