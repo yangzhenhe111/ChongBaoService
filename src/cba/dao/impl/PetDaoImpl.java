@@ -50,6 +50,11 @@ public class PetDaoImpl {
 		return list;
 	}
 
+	/**
+	 * 修改pet信息
+	 * @param pet
+	 * @return
+	 */
 	public boolean updataPet(Pet pet){
 		Connection connection = DBUtil.getConnection();
 		String sql = "update pet " +
@@ -77,5 +82,40 @@ public class PetDaoImpl {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * 添加pet信息
+	 * @param pet
+	 * @return
+	 */
+	public boolean addPet(Pet pet){
+		Connection connection = DBUtil.getConnection();
+		String sql = "insert into pet(picture_path,pet_name,pet_type,pet_age," +
+				"pet_weight,pet_autograph,user_id) " +
+				"values (?,?,?,?,'20',?,?);";
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int n = 0;
+		try {
+			ps = connection.prepareStatement(sql);
+			ps.setString(1,pet.getPicturePath());
+			ps.setString(2,pet.getPetName());
+			ps.setString(3,pet.getPetType());
+			ps.setInt(4,pet.getPetAge());
+			ps.setString(5,pet.getPetAutograph());
+			ps.setInt(6,pet.getUserId());
+			n = ps.executeUpdate();
+		} catch (SQLException throwables) {
+			throwables.printStackTrace();
+		}finally {
+			DBUtil.close(rs,rs,ps,connection);
+		}
+		if(n > 0){
+			return true;
+		}else {
+			return false;
+		}
+
 	}
 }
