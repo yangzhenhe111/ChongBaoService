@@ -36,9 +36,20 @@ public class UserService {
         return b;
     }
 
+    /**
+     * 修改用户信息
+     * @param user
+     * @return true 修改成功
+     */
     public boolean Updata(User user){
         UserDao userDao = UserDao.getInstance();
         boolean b = userDao.upData(user);
+        return b;
+    }
+
+    public boolean UpdataPassword(String phone,String password){
+        UserDao userDao = UserDao.getInstance();
+        boolean b = userDao.UpdataPassword(phone,password);
         return b;
     }
 }

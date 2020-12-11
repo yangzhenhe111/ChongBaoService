@@ -17,6 +17,7 @@ public class GetImageByPath extends HttpServlet {
         String path = req.getParameter("path");
         String realPath = getServletContext().getRealPath(path);
 
+        System.out.println(realPath);
         InputStream in = new FileInputStream(realPath);
         OutputStream out = resp.getOutputStream();
         byte[] bytes = new byte[1024];
