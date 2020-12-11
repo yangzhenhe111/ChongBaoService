@@ -26,13 +26,14 @@ public class GetIdPostServlet extends HttpServlet {
         DBUtil dbUtillrz = new DBUtil();
         String id = request.getParameter("post_id");
         try {
-            ResultSet resultSet = dbUtillrz.queryDate("select user.user_picture_path,post_title,post_text,post_time,number_likes,number_comments,number_reprints,user_name,name,post.picture_path from post,user where post_id='"+id+"' and post.user_id = user.user_id");
+            ResultSet resultSet = dbUtillrz.queryDate("select user.user_picture_path,post.user_id,post_title,post_text,post_time,number_likes,number_comments,number_reprints,user_name,name,post.picture_path from post,user where post_id='"+id+"' and post.user_id = user.user_id");
             JSONArray jsonArray = new JSONArray();
             while (resultSet.next()){
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("likes",resultSet.getString("number_likes"));
                 jsonObject.put("comments",resultSet.getString("number_comments"));
                 jsonObject.put("forwards",resultSet.getString("number_reprints"));
+                jsonObject.put("user_id",resultSet.getString("user_id"));
                 jsonObject.put("post_title",resultSet.getString("post_title"));
                 jsonObject.put("post_text",resultSet.getString("post_text"));
                 jsonObject.put("post_time",resultSet.getString("post_time"));
