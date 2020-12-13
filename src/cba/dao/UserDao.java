@@ -99,4 +99,29 @@ public class UserDao {
         }
         return false;
     }
+
+    public boolean UpdataPassword(String phone,String password){
+        Connection connection = DBUtil.getConnection();
+        String sql = "update user " +
+                "set user_password=? " +
+                "where user_phone=?;";
+        PreparedStatement ps = null ;
+        ResultSet rs = null;
+        int n = 0;
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1,password);
+            ps.setString(2,phone);
+            System.out.println(sql);
+            n = ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally {
+            DBUtil.close(rs,rs,ps,connection);
+        }
+        if(n > 0){
+            return true;
+        }
+        return false;
+    }
 }
