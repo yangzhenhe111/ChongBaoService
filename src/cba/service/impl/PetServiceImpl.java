@@ -43,4 +43,14 @@ public class PetServiceImpl {
 		boolean b = petDao.addPet(pet);
 		return b;
 	}
+
+	/**
+	 *
+	 * @param petId
+	 * @return
+	 */
+	public String getPet(int petId){
+		PetDaoImpl impl = PetDaoImpl.getInstance();
+		return new Gson().toJson(impl.getPet(petId));
+	}
 }

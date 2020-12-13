@@ -49,7 +49,34 @@ public class PetDaoImpl {
 		}
 		return list;
 	}
-
+public Pet getPet(int petId){
+	Connection cn = DBUtil.getConnection();
+	String sql ="select * from pet where pet_id =?";
+	PreparedStatement ps = null;
+	System.out.println(sql);
+	ResultSet rs=null;
+	Pet pet= new Pet();
+	try {
+		ps = cn.prepareStatement(sql);
+		ps.setInt(1,petId);
+		rs= ps.executeQuery();
+		while (rs.next()){
+			pet.setPetId(petId);
+			pet.setPicturePath(rs.getString("picture_path"));
+			pet.setPetName(rs.getString("pet_name"));
+			pet.setPetType(rs.getString("pet_type"));
+			pet.setPetAge(rs.getInt("pet_age"));
+			pet.setPetWeight(rs.getString("pet_weight"));
+			pet.setUserId(rs.getInt("user_id"));
+			pet.setPetAutograph(rs.getString("pet_autograph"));
+		}
+	} catch (SQLException throwables) {
+		throwables.printStackTrace();
+	}finally {
+		DBUtil.close(rs,rs,ps,cn);
+	}
+	return  pet;
+}
 	/**
 	 * 修改pet信息
 	 * @param pet

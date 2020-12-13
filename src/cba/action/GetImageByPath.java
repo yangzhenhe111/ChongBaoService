@@ -14,9 +14,10 @@ import java.io.OutputStream;
 public class GetImageByPath extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String path = req.getParameter("path");
+        String path = "img/"+req.getParameter("path");
         String realPath = getServletContext().getRealPath(path);
 
+        System.out.println(getServletContext());
         InputStream in = new FileInputStream(realPath);
         OutputStream out = resp.getOutputStream();
         byte[] bytes = new byte[1024];
