@@ -43,4 +43,11 @@ public class PetServiceImpl {
 		boolean b = petDao.addPet(pet);
 		return b;
 	}
+
+
+	public boolean deletePet(int petId) {
+		PetDaoImpl petDao = PetDaoImpl.getInstance();
+		int n = petDao.deletePet(petId);
+		return n > 0;
+	}
 }

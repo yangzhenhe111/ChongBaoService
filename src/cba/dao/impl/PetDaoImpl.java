@@ -118,4 +118,30 @@ public class PetDaoImpl {
 		}
 
 	}
+
+	/**
+	 * 删除
+	 * @param petId
+	 * @return
+	 */
+
+	public int deletePet(int petId) {
+		Connection connection = DBUtil.getConnection();
+		String sql = "delete from pet where pet_id=?";
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int n = 0;
+
+		try {
+			ps = connection.prepareStatement(sql);
+			ps.setInt(1, petId);
+			n = ps.executeUpdate();
+		} catch (SQLException var11) {
+			var11.printStackTrace();
+		} finally {
+			DBUtil.close((ResultSet)rs, (ResultSet)rs, ps, connection);
+		}
+
+		return n;
+	}
 }
