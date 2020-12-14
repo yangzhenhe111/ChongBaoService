@@ -36,6 +36,8 @@ public class AddressDaoImpl {
                 address.setId(rs.getInt("id"));
                 address.setPeople(rs.getString("people"));
                 address.setTel(rs.getString("tel"));
+                address.setUserId(userId);
+                address.setIsPost(isPost);
                 list.add(address);
             }
         } catch (SQLException throwables) {
@@ -62,7 +64,24 @@ public class AddressDaoImpl {
         }
 
     }
-    public void deleteAddress(int id){
+    public void addAddress(Address address,int userId,int ispost){
+        Connection cn = DBUtil.getConnection();
+        String sql ="insert into address(userid,address,people,tel,ispost) values (?,?,?,?,?)";
+        PreparedStatement ps = null;
+        try {
+            ps= cn.prepareStatement(sql);
+            ps.setInt(1,userId);
+            ps.setString(2,address.getAddress());
+            ps.setString(3,address.getPeople());
+            ps.setString(4,address.getTel());
+            ps.setInt(5,ispost);
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+    public int  deleteAddress(int id){
+        int count = 0;
         Connection cn = DBUtil.getConnection();
         String sql ="delete from address where id =?";
         PreparedStatement ps = null;
@@ -70,11 +89,13 @@ public class AddressDaoImpl {
         try {
             ps= cn.prepareStatement(sql);
             ps.setInt(1,id);
-            ps.executeUpdate();
+            count = ps.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
             DBUtil.close(rs,rs,ps,cn);
         }
+
+        return  count;
     }
 }

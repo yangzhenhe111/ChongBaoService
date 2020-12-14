@@ -9,7 +9,7 @@ public class DBUtil {
             // 1.获取驱动
             Class.forName("com.mysql.jdbc.Driver");
             // 2.获取connection
-            connection = DriverManager.getConnection("jdbc:mysql://bj-cdb-ja86u770.sql.tencentcdb.com:61120/pet", "root", "guanliyuan123456");
+            connection = DriverManager.getConnection("jdbc:mysql://8.131.233.21:3306/pet?useSSL=false", "root", "chongbao666");
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -20,8 +20,13 @@ public class AddressServiceImpl {
         AddressDaoImpl impl = AddressDaoImpl.getInstance();
         impl.updateAddress(address);
     }
-    public void deleteAddress(int id){
+    public int  deleteAddress(int id){
         AddressDaoImpl impl = AddressDaoImpl.getInstance();
-        impl.deleteAddress(id);
+        return  impl.deleteAddress(id);
     }
+    public void addAddress(Address address,int userId,int ispost){
+        AddressDaoImpl impl = AddressDaoImpl.getInstance();
+        impl.addAddress(address,userId,ispost);
+    }
+
 }
