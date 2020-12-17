@@ -18,8 +18,17 @@ private String kilometers;
 private String orderState;
 private int userId;
 private String addresseeContact;
+private String iteminfo;
 
-public String getOrderStart() {
+	public String getIteminfo() {
+		return iteminfo;
+	}
+
+	public void setIteminfo(String iteminfo) {
+		this.iteminfo = iteminfo;
+	}
+
+	public String getOrderStart() {
 	return orderStart;
 }
 public void setOrderStart(String orderStart) {

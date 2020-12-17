@@ -21,6 +21,12 @@ public class PetServiceImpl {
 		return new Gson().toJson(list);
 	}
 
+    public String getPet(int userId) {
+        PetDaoImpl impl = PetDaoImpl.getInstance();
+        Pet pet = impl.getPet(userId);
+        return new Gson().toJson(pet);
+    }
+
 	/**
 	 * 修改pet信息
 	 * @param pet
@@ -44,13 +50,10 @@ public class PetServiceImpl {
 		return b;
 	}
 
-	/**
-	 *
-	 * @param petId
-	 * @return
-	 */
-	public String getPet(int petId){
-		PetDaoImpl impl = PetDaoImpl.getInstance();
-		return new Gson().toJson(impl.getPet(petId));
+
+	public boolean deletePet(int petId) {
+		PetDaoImpl petDao = PetDaoImpl.getInstance();
+		int n = petDao.deletePet(petId);
+		return n > 0;
 	}
 }

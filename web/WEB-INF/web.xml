@@ -3,31 +3,4 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-        <display-name>Archetype Created Web Application</display-name>
-
-        <servlet>
-            <servlet-name>MyServlet</servlet-name>
-            <servlet-class>cba.servlet.RegisterServlet</servlet-class>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>MyServlet</servlet-name>
-            <url-pattern>/RegisterServlet</url-pattern>
-        </servlet-mapping>
-    <servlet>
-        <servlet-name>UpdataUserInfoServlet</servlet-name>
-        <servlet-class>cba.servlet.UpdataUserInfoServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UpdataUserInfoServlet</servlet-name>
-        <url-pattern>/UpdataUserInfoServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>UpDataUserInfo2Servlet</servlet-name>
-        <servlet-class>cba.servlet.UpDataUserInfo2Servlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UpDataUserInfo2Servlet</servlet-name>
-        <url-pattern>/UpDataUserInfo2Servlet</url-pattern>
-    </servlet-mapping>
-
 </web-app>

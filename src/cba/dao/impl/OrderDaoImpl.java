@@ -81,4 +81,38 @@ public class OrderDaoImpl {
 		}
 		return 6;
 	}
+
+	public int insertOrder(Order order){
+		Connection connection = DBUtil.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = "insert into orders(order_start,order_end,pet_id,addresser,addressee,petshop_contact,remarks,order_amount," +
+				"client_contact,runner_contact,runner_name,order_time,kilometers,order_state,user_id,addressee_contact,iteminfo) " +
+				"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+		int n = 0;
+		try {
+			ps = connection.prepareStatement(sql);
+			ps.setString(1,order.getOrderStart());
+			ps.setString(2,order.getOrderEnd());
+			ps.setInt(3,2);
+			ps.setString(4,order.getAddresser());
+			ps.setString(5,order.getAddressee());
+			ps.setString(6,order.getPetShopContact());
+			ps.setString(7,order.getRemarks());
+			ps.setInt(8,Integer.valueOf(order.getOrderAmount()));
+			ps.setString(9,order.getClientContact());
+			ps.setString(10,order.getRunnerContact());
+			ps.setString(11,order.getRunnerName());
+			ps.setString(12,order.getOrderTime());
+			ps.setString(13,order.getKilometers());
+			ps.setString(14,order.getOrderState());
+			ps.setInt(15,order.getUserId());
+			ps.setString(16,order.getAddresseeContact());
+			ps.setString(17,order.getIteminfo());
+			n = ps.executeUpdate();
+		} catch (SQLException throwables) {
+			throwables.printStackTrace();
+		}
+		return n;
+	}
 }

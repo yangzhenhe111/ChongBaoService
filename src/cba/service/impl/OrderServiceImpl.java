@@ -26,4 +26,15 @@ public class OrderServiceImpl {
 		return impl.changeState(state, orderId);
 	}
 
+	public boolean insetOrder(Order order){
+		OrderDaoImpl orderDao = OrderDaoImpl.getInstance();
+		int n = orderDao.insertOrder(order);
+		if(n > 0){
+			return true;
+		}else {
+			return false;
+		}
+
+	}
+
 }
