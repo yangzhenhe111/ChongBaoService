@@ -40,7 +40,6 @@ public class MyUser extends HttpServlet {
 		OutputStream out = response.getOutputStream();
 		out.write(string.getBytes("utf-8"));
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
