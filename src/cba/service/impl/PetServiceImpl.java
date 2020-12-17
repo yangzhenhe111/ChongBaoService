@@ -21,6 +21,12 @@ public class PetServiceImpl {
 		return new Gson().toJson(list);
 	}
 
+    public String getPet(int userId) {
+        PetDaoImpl impl = PetDaoImpl.getInstance();
+        Pet pet = impl.getPet(userId);
+        return new Gson().toJson(pet);
+    }
+
 	/**
 	 * 修改pet信息
 	 * @param pet
